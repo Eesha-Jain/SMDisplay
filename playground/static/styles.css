@@ -1,0 +1,76 @@
+html {
+    background-color: #ebeeff;
+}
+
+h1 {
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+}
+
+
+body {
+    display-content: center;
+    align-items: center;
+}
+
+.surrounding {
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto;
+    display-content: center;
+    align-items: center;
+    grid-gap: 10px;
+    width: 98%;
+    margin: 10px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: white;
+}
+
+.card:hover {
+    box-shadow: 0 0px 30px 0 rgba(0,0,0,0.4);
+}
+
+.container {
+    padding: 2px 16px;
+}
+
+.stock-name {
+    font-size: 32px;
+    text-align: center;
+}
+
+.stock-des {
+    color: gray;
+    font-size: 13px;
+    margin: 5px;
+    text-align: center;
+}
+
+.stock-price {
+    font-size: 18px;
+    text-align: center;
+}
+
+.stock-gain {
+    font-size: 28px;
+    text-align: center;
+}
+
+.button {
+	border-radius: 4px;
+	border: none;
+	background-color: #c7fffa;
+	color: black;
+	padding: 10px 45px;
+	font-size: 20px;
+	margin: 20dp;
+	outline: none;
+}
+
+.button:hover {
+	background-color: #bafff9;
+    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.6);
+}

@@ -1,5 +1,26 @@
-{% if name %}
-<h1>Hello {{ name }}</h1>
-{% else %}
-<h1>Hello World</h1>
-{% endif %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SM Display</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/financial-diagrams-1/100/flatup-512.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1 style="font-size: 48px;">Current Stock Trends</h1>
+    <div class="surrounding">
+      {% for i in data %}
+        <div class="card">
+          <h1 class="stock-name">{{ i.0 }}</h1>
+          <p class="stock-des">{{ i.1 }}</p>
+          <h3 class="stock-price">{{ i.2 }}</h3>
+          <h3 class="stock-gain" style="color:green;">{{ i.3 }}</h3>
+          <div class="caption">
+              <h1 class="stock-name" style="color: white;">{{ i.0 }}</h1>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+</body>
