@@ -13,29 +13,17 @@
       <div class="grid" style="width: 100%;">
         {% for i in data %}
           <div class="card">
-            <div class="inner">
-              <div class="front">
-                <h1 class="stock-name">{{ i.0 }}</h1>
-                <p class="stock-des">{{ i.1 }}</p>
-                <h3 class="stock-price">Stock Price: ${{ i.2 }}</h3>
+            <h1 class="stock-name">{{ i.0 }}</h1>
+            <p class="stock-des">{{ i.1 }}</p>
+            <h3 class="stock-price">Stock Price: ${{ i.2 }}</h3>
 
-                {% if i.3 > 0.0 %}
-                    <h3 class="stock-gain" style="color:green;">Change: {{ i.3 }}</h3>
-                {% elif i.3 < 0 %}
-                    <h3 class="stock-gain" style="color:red;">Change: {{ i.3 }}</h3>
-                {% else %}
-                    <h3 class="stock-gain" style="color:blue;">Change: {{ i.3 }}</h3>
-                {% endif %}
-              </div>
-
-              <div class="back">
-                <h1 class="stock-name">{{ i.0 }}</h1>
-                {% autoescape off %}
-                    {{ i.4 }}
-                {% endautoescape %}
-                {{ i.4 }}
-              </div>
-            </div>
+            {% if i.3 > 0.0 %}
+                <h3 class="stock-gain" style="color:green;">Change: {{ i.3 }}</h3>
+            {% elif i.3 < 0 %}
+                <h3 class="stock-gain" style="color:red;">Change: {{ i.3 }}</h3>
+            {% else %}
+                <h3 class="stock-gain" style="color:blue;">Change: {{ i.3 }}</h3>
+            {% endif %}
           </div>
         {% endfor %}
       </div>

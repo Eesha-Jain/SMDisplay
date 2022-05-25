@@ -1,7 +1,6 @@
 def getData():
     import requests
     from bs4 import BeautifulSoup
-    from django.utils.html import format_html
 
     url = "https://finance.yahoo.com/trending-tickers"
     response = requests.get(url)
@@ -12,7 +11,6 @@ def getData():
     stockPrices = soup.find_all('td', attrs={"aria-label": "Last Price"})
     gainOrLoss = soup.find_all('td', attrs={"aria-label": "Change"})
     stockAcronym = soup.find_all('td', attrs={"aria-label": "Symbol"})
-    graphForStock = soup.find_all('td', attrs={"aria-label": "Day Chart"})
 
     dataArray = []
     #Array that processes each value seperately
@@ -21,12 +19,8 @@ def getData():
         stock_price = str(stockPrices[i].text)
         up_down = str(gainOrLoss[i].text)
         acronym = str(stockAcronym[i].text)
-        graph = str(graphForStock[i])
 
-        up_down = up_down.replace('+', "")
-        stock_name = stock_name.replace(" ", "_")
-
-        dataArray.append([acronym, stock_name.replace("_", " "), stock_price, float(up_down), format_html(graph)])
+        dataArray.append([acronym, stock_name.replace("_", " "), stock_price, float(up_down)])
 
     dataArray = sorted(dataArray,key=lambda x: x[3], reverse=True)
     return dataArray
