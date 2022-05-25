@@ -1,26 +1,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SM Display</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <title>SMDisplay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/financial-diagrams-1/100/flatup-512.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="/static/styles.css?{% now "U" %}"/>
 </head>
 <body>
-    <h1 style="font-size: 48px;">Current Stock Trends</h1>
-    <div class="surrounding">
-      {% for i in data %}
-        <div class="card">
-          <h1 class="stock-name">{{ i.0 }}</h1>
-          <p class="stock-des">{{ i.1 }}</p>
-          <h3 class="stock-price">{{ i.2 }}</h3>
-          <h3 class="stock-gain" style="color:green;">{{ i.3 }}</h3>
-          <div class="caption">
-              <h1 class="stock-name" style="color: white;">{{ i.0 }}</h1>
+    <h1 style="font-size: 42px; margin-bottom: 0;">CURRENT STOCK TRENDS</h1>
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <div class="grid" style="width: 100%;">
+        {% for i in data %}
+          <div class="card">
+            <div class="inner">
+              <div class="front">
+                <h1 class="stock-name">{{ i.0 }}</h1>
+                <p class="stock-des">{{ i.1 }}</p>
+                <h3 class="stock-price">Stock Price: ${{ i.2 }}</h3>
+
+                {% if i.3 > 0.0 %}
+                    <h3 class="stock-gain" style="color:green;">Change: {{ i.3 }}</h3>
+                {% elif i.3 < 0 %}
+                    <h3 class="stock-gain" style="color:red;">Change: {{ i.3 }}</h3>
+                {% else %}
+                    <h3 class="stock-gain" style="color:blue;">Change: {{ i.3 }}</h3>
+                {% endif %}
+              </div>
+
+              <div class="back">
+                <h1 class="stock-name">{{ i.0 }}</h1>
+                {% autoescape off %}
+                    {{ i.4 }}
+                {% endautoescape %}
+                {{ i.4 }}
+              </div>
+            </div>
           </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      </div>
     </div>
 </body>

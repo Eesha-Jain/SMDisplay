@@ -1,6 +1,7 @@
 def getData():
     import requests
     from bs4 import BeautifulSoup
+    from django.utils.html import format_html
 
     url = "https://finance.yahoo.com/trending-tickers"
     response = requests.get(url)
@@ -25,6 +26,7 @@ def getData():
         up_down = up_down.replace('+', "")
         stock_name = stock_name.replace(" ", "_")
 
-        dataArray.append([acronym, stock_name, stock_price, up_down, graph])
+        dataArray.append([acronym, stock_name.replace("_", " "), stock_price, float(up_down), format_html(graph)])
 
+    dataArray = sorted(dataArray,key=lambda x: x[3], reverse=True)
     return dataArray
