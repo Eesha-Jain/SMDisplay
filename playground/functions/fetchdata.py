@@ -19,8 +19,7 @@ def getData():
         stock_price = str(stockPrices[i].text)
         up_down = str(gainOrLoss[i].text)
         acronym = str(stockAcronym[i].text)
-
-        dataArray.append([acronym, stock_name.replace("_", " "), stock_price, float(up_down)])
+        dataArray.append([acronym, stock_name.replace("_", " "), stock_price, up_down, up_down[0:1]])
 
     dataArray = sorted(dataArray,key=lambda x: x[3], reverse=True)
     return dataArray
